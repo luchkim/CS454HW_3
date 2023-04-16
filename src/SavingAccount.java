@@ -12,8 +12,8 @@ public class SavingAccount extends ReentrantLock {
     SavingAccount(){
         lock = new ReentrantLock();
         condition = lock.newCondition();
+        // balance starting with 0
         balance = 0.0;
-        holdCount = 0;
     }
 
     // subtracts amount if balance is at least amount.
@@ -37,6 +37,9 @@ public class SavingAccount extends ReentrantLock {
         balance += amount;
         System.out.println("Deposit: " + amount);
         System.out.println("Balance: " + balance);
+
+        // signals the waiting lines at "withdraw"
+        condition.signalAll();
         lock.unlock();
     }
 }
