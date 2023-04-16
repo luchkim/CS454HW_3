@@ -28,7 +28,7 @@ public class SavingAccount extends ReentrantLock {
             System.out.println("balance: " + balance + ", withdraw amount: " + balance);
         }
         lock.unlock();
-        condition.signalAll();
+        // condition.signalAll();
     }
 
     // adds amount to the balance
@@ -38,7 +38,7 @@ public class SavingAccount extends ReentrantLock {
         System.out.println("Deposit: " + amount);
         System.out.println("Balance: " + balance);
 
-        // signals the waiting lines at "withdraw"
+        // signals the waiting lines at "withdraw()"
         condition.signalAll();
         lock.unlock();
     }
